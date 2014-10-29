@@ -1,0 +1,86 @@
+<?php
+
+$cookie_name="user";
+if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named " . $cookie_name . " does not exist!";
+} else {
+    echo "<br>Cookie is named:".$cookie_name." <br>Value is:" . $_COOKIE[$cookie_name];
+header('Location: kbanda2.rochestercs.org');
+
+}
+?>
+
+
+<html>
+<head>
+<title>Fooder</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+
+$("#log_out").click(function(){
+
+console.log("hi");
+// AJAX Code
+$.ajax({
+url: "cgi-bin/delCookie.php",
+type:"GET",
+dataType:"json",
+success: function(dat){
+
+window.location.href='index.html';
+
+
+}});
+
+});
+});
+</script>
+
+
+
+</head>
+<body>
+
+<header>
+<h1><a href="home.html"> Fooder </a></h1>
+<!--
+<?php
+
+$cookie_name="user";
+if(!isset($_COOKIE[$cookie_name])) {
+    echo "Cookie named " . $cookie_name . " does not exist!";
+} else {
+    echo "<br>Cookie is named:".$cookie_name." <br>Value is:" . $_COOKIE[$cookie_name];
+header('Location: kbanda2.rochestercs.org');
+
+}
+?>
+-->
+        <nav>
+                <ul>
+
+
+                        <li><a href="order.html">Order Now</a></li>
+                        <li><a href="deliver.html">Deliver</a></li>
+
+
+
+                        <li><button id="log_out">Log Out</button></li>
+                </ul>
+        </nav>
+<header>
+
+<div id="wrapper">
+        <section>
+        </p>Coming Soon</p>
+        </section>
+</div>
+
+
+</body>
+</html>
