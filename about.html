@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Fooder</title>
+<link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+<!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!--<script src="header.js"></script>-->
+<script type="text/javascript">
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+$("#log_out").click(function(){
+
+createCookie("user" ,"",-1);
+
+window.location.href='index.html';
+
+
+
+});
+
+
+ $("#settings").click(function(){        
+                window.location.href='settings.html';
+        });
+
+        $("#currentorder").click(function(){    
+                window.location.href='currentorder.html';
+        });
+
+$("#openorders").click(function(){        
+                window.location.href='deliver.html';
+        });
+        $("#mydeliveries").click(function(){    
+                window.location.href='mydeliver.html';
+        });
+
+});
+
+</script>
+
+</head>
+<body>
+
+<!--header navigation-->
+        <div id="navWrap">
+                                <div id="nav">
+                                <ul id="logo">
+                                <li><a href="home.html" >U of R Fooder</a></li>
+                                </ul>
+
+                                                                <ul id="subnav">
+                                <li id="log_out"><a href="index.html">Log Out</a></li>
+                                <li class="sep">|</li>
+                                <li class="definition"><a>My Fooder </a><span class="hidden"><div id="currentorder">View Current Order</div><div id="settings" >Account Settings</div></li>
+                                <li class="sep">|</li>
+                                <li><a href="about.html" >About</a></li>
+                                <li class="sep">|</li>
+                                 <li class="definition"><a>Delivery </a><span class="hidden"><div id="openorders">Open Orders</div><div id="mydeliveries" >My Deliveries</div></li>
+
+                                <li class="sep">|</li>
+                                <li><a href="home.html">Order</a></li>
+
+                        </ul>
+                        <br class="clearLeft" />
+
+
+                </div>
+        </div>
+        <section>
+<div id="wrapper">
+<div id="title">About Fooder</div>
+<hr>
+                <p>Fooder is a tool for University of Rochester students to enjoy food from restaurants who may not deliver.</p>
+                <p>Fooder works by allowing people to volunteer their delivery services similar in manner to how Uber functions.</p>
+</div>
+        </section>
+        </body>
+</html>

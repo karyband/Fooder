@@ -1,0 +1,182 @@
+<html>
+<head>
+<title>Fooder</title>
+<link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+<!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!--<script src="header.js"></script>-->
+<script type="text/javascript">
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+
+
+</script>
+
+
+<!--<script>
+function myFunction() {//get the day of the week, to update the page with open listings only (future use)
+    var d = new Date();
+    var n = d.getDay();
+    console.log(n);
+    
+        $.ajax({
+   type: "POST",
+   url: "cgi-bin/check_restaurants.php",
+   data: n,
+   dataType:"json",
+   cache: false,
+   success: function(dat){
+     if(dat.check=="false"){
+        alert("Incorrect log in. Please try again");}
+     else{
+        window.location.href='home.html';
+            
+    
+}
+}});
+    
+    
+}
+$( document ).ready(myFunction); 
+
+
+
+</script>-->
+
+<script type="text/javascript">
+
+function pop(){
+        console.log("hi");
+        var cuisine=$("#tfq").val();
+        var dataString='cuisineType='+cuisine;
+        $.ajax({
+                url:"../cgi-bin/retrieve_data.php",
+                type:"POST",
+                data: dataString,
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                        if(response!='')
+                        { $("#da-thumbs").empty();;
+$("#da-thumbs").append(response);}
+                }
+        });
+}
+
+;
+
+
+$(document).ready(function(){
+
+$("#log_out").click(function(){
+
+createCookie("user" ,"",-1);
+
+window.location.href='index.html';
+
+
+
+});
+
+
+
+ $("#settings").click(function(){        
+                window.location.href='settings.html';
+        });
+  
+$("#currentorder").click(function(){    
+                window.location.href='currentorder.html';
+        });
+
+$("#openorders").click(function(){        
+                window.location.href='deliver.html';
+        });
+        
+         $("#mydeliveries").click(function(){    
+                window.location.href='mydeliver.html';
+        });
+
+});
+
+
+
+
+$(document).ready(function(){
+console.log("info");
+        $.ajax({
+                url:"../cgi-bin/retrieve_rest.php",
+                type:"GET",
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                        if(response!='')
+                        { $("#da-thumbs").append(response);}
+                }
+        });
+});
+
+
+
+</script>
+
+
+</head>
+<body>
+
+<!--header navigation-->
+        <div id="navWrap">
+                                <div id="nav">
+                                <ul id="logo">
+                                <li><a href="home.html" >U of R Fooder</a></li>
+                                </ul>
+
+                                                                <ul id="subnav">
+                                <li id="log_out"><a href="index.html">Log Out</a></li>
+                                <li class="sep">|</li>
+                                <li class="definition"><a>My Fooder </a><span class="hidden"><div id="currentorder">View Current Order</div><div id="settings" >Account Settings</div></li>
+                                <li class="sep">|</li>
+                                <li><a href="about.html" >About</a></li>
+                                <li class="sep">|</li>
+                                 <li class="definition"><a>Delivery </a><span class="hidden"><div id="openorders">Open Orders</div><div id="mydeliveries" >My Deliveries</div></li>
+
+                                <li class="sep">|</li>
+                                <li><a href="home.html">Order</a></li>
+
+                        </ul>
+<br class="clearLeft" />
+
+
+                </div>
+        </div>
+
+
+
+<!--content-->
+<div id="wrapper" class="clearfix">
+
+<div id="title" style="float:left">Available Restaurants:   </div>   <input type="text" style="margin-left:15px;" id="tfq" class="tftextinput2" name="q" size="30" maxlength="120" placeholder="Search by cuisine type"><input type="submit" value="Go" onclick="pop()" class="tfbutton2">
+<hr style="clear:both">
+<br>
+
+<div id="da-thumbs" class="da-thumbs">
+
+<!--restaurants will be appended into here-->
+ </div>
+
+</div>
+
+
+</body>
+</html>
