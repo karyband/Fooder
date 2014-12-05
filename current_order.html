@@ -1,0 +1,176 @@
+<html>
+<head>
+<title>Fooder</title>
+<link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+<!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<script type="text/javascript">
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+        $("#log_out").click(function(){
+
+                createCookie("user" ,"",-1);
+
+                
+                window.location.href='index.html';
+
+
+
+                });
+
+
+        $("#settings").click(function(){        
+                window.location.href='settings.html';
+        });
+
+        $("#currentorder").click(function(){    
+                window.location.href='currentorder.html';
+        });
+$("#openorders").click(function(){        
+                window.location.href='deliver.html';
+        });
+
+        $("#mydeliveries").click(function(){   
+      window.location.href='mydeliver.html';
+        });
+
+});
+
+
+
+//new things here
+$(document).ready(function(){
+console.log("listing");
+        $.ajax({
+                url:"../cgi-bin/retrieve_current.php",
+                type:"GET",
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                        if(response!='')
+                        { 
+                        $("#theirorder").append(response);
+                        }
+                }
+        });
+        
+});
+
+
+
+function redo() {
+console.log("redo");
+        var restname=document.getElementById('restname').innerHTML;
+console.log(restname);
+    var r = confirm("Redo-ing your order will delete your current order, are you sure?");
+    if (r == true) {
+    
+    
+    $.ajax({
+                url:"../cgi-bin/delete_current.php",
+                type:"GET",
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                  window.location.href='order.html?name='+restname;     
+                }
+        });
+        
+        
+    }
+}
+    
+
+
+function delete1() {
+console.log("delete");
+    var r = confirm("Are you sure you want to delete your current order?");
+    if (r == true) {
+   $.ajax({
+                url:"../cgi-bin/delete_current.php",
+                type:"GET",
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                   document.getElementById("theirorder").innerHTML = "";
+    document.getElementById("theirorder").innerHTML = "You have no current order.";  
+                }
+        });
+        
+        
+    }
+}
+
+
+
+
+//new things end here
+
+</script>
+
+
+</head>
+<body>
+
+<!--header navigation-->
+        <div id="navWrap">
+                                <div id="nav">
+                                <ul id="logo">
+                                <li><a href="home.html" >U of R Fooder</a></li>
+                                </ul>
+
+                                                                <ul id="subnav">
+                                <li id="log_out"><a href="index.html">Log Out</a></li>
+                                <li class="sep">|</li>
+                                <li class="definition"><a>My Fooder </a><span class="hidden"><div id="currentorder">View Current Order</div><div id="settings" >Account Settings</div></li>
+                                <li class="sep">|</li>
+                                <li><a href="about.html" >About</a></li>
+                                <li class="sep">|</li>
+                                 <li class="definition"><a>Delivery </a><span class="hidden"><div id="openorders">Open Orders</div><div id="mydeliveries" >My Deliveries</div></li>
+
+                                <li class="sep">|</li>
+                                <li><a href="home.html">Order</a></li>
+
+                        </ul>
+                        <br class="clearLeft" />
+
+
+                </div>
+        </div>
+        
+        <!--content-->
+
+</div>
+<div id="wrapper">
+<!--current order goes here-->
+<div id="title"> Current Order</div>
+<hr>
+<div id="theirorder" style="font-size:1.3em"></div>
+
+
+</div>
+
+</html> 
+        
