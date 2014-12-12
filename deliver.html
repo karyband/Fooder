@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>Fooder</title>
+<link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+<!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!--script <src="header.js"></script>-->
+<script type="text/javascript">
+
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+
+
+</script>
+
+
+<!--<script>
+function myFunction() {//get the day of the week, to update the page with open listings only (future use)
+    var d = new Date();
+    var n = d.getDay();
+    console.log(n);
+    
+	$.ajax({
+   type: "POST",
+   url: "cgi-bin/check_restaurants.php",
+   data: n,
+   dataType:"json",
+   cache: false,
+   success: function(dat){
+     if(dat.check=="false"){
+        alert("Incorrect log in. Please try again");}
+     else{
+        window.location.href='home.html';
+            
+    
+}
+}});
+    
+    
+}
+
+$( document ).ready(myFunction); 
+
+
+
+
+</script>-->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+$("#log_out").click(function(){
+
+createCookie("user" ,"",-1);
+
+B
+window.location.href='index.html';
+
+
+
+});
+
+
+ $("#settings").click(function(){        
+                window.location.href='settings.html';
+        });
+
+        $("#currentorder").click(function(){    
+                window.location.href='currentorder.html';
+        });
+
+ $("#openorders").click(function(){        
+                window.location.href='deliver.html';
+        });
+
+        $("#mydeliveries").click(function(){    
+                window.location.href='mydeliver.html';
+        });
+
+});
+
+$(document).ready(function(){
+console.log("listing");
+        $.ajax({
+                url:"../cgi-bin/retrieve_listings.php",
+                type:"GET",
+                dataType:"text",
+                cache:false,
+                success: function(response){
+                        if(response!='')
+                        { $("#deliverlistings").append(response);}
+                }
+        });
+});
+
+function submitdelivery(){
+var checkboxes = document.getElementsByName('deliver');
+var vals = "";
+var val_array;
+var idnum;
+for (var i=0, n=checkboxes.length;i<n;i++) {
+  if (checkboxes[i].checked) 
+  { 
+ // val_array = (checkboxes[i].value).split(" Time Ordered");
+  //val_array = val_array[0].split(": ");
+console.log("testest");   
+idnum = checkboxes[i].id;
+console.log(idnum);
+  //vals = val_array[1];
+  }
+}
+
+var dataString='order1='+idnum;
+
+ $.ajax({
+                url:"../cgi-bin/make_delivery.php",
+                type:"POST",
+                data:dataString,
+                dataType:"text",
+		cache:false,
+                success: function(response){
+		
+                  alert("You have accepted a delivery");      
+                }
+        });
+
+}
+
+
+</script>
+
+
+</head>
+<body>
+
+<!--header navigation-->
+	<div id="navWrap">
+				<div id="nav">
+				<ul id="logo">
+				<li><a href="home.html" >U of R Fooder</a></li>
+				</ul>
+				
+				<ul id="subnav">
+                                <li id="log_out"><a href="index.html">Log Out</a></li>
+                                <li class="sep">|</li>
+                                <li class="definition"><a>My Fooder </a><span class="hidden"><div id="currentorder">View Current Order</div><div id="settings" >Account Settings</div></li>
+                                <li class="sep">|</li>
+                                <li><a href="about.html" >About</a></li>
+                                <li class="sep">|</li>
+                                 <li class="definition"><a>Delivery </a><span class="hidden"><div id="openorders">Open Orders</div><div id="mydeliveries" >My Deliveries</div></li>
+
+                                <li class="sep">|</li>
+                                <li><a href="home.html">Order</a></li>
+
+                        </ul>
+
+			<br class="clearLeft" />
+
+			
+		</div>
+	</div>
+	
+	
+
+<!--content-->
+
+</div>
+<div id="wrapper">
+<div id="title">Open Orders</div>
+<hr>
+Check an order and submit to accept the order for delivery.
+<ul id="deliverlistings">
+
+</ul>
+
+</div>
+
+</html>

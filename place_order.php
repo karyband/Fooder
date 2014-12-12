@@ -11,22 +11,22 @@ $cookie_name = "user";
 date_default_timezone_set('America/New_York');
 
 echo "<script>console.log('server')</script>";
-        $cookie_value = $_COOKIE[$cookie_name];
-        $cookie_value_arr = explode(" ", $cookie_value);
-        $email = $cookie_value_arr[0];
-        $timedate = date("g:i a");
-
-        $restname= mysqli_real_escape_string($connect, $_POST['name1']);
-        $items=mysqli_real_escape_string($connect, $_POST['food']);
-        $total_price=mysqli_real_escape_string($connect, $_POST['total']);
+	$cookie_value = $_COOKIE[$cookie_name];
+	$cookie_value_arr = explode(" ", $cookie_value);
+	$email = $cookie_value_arr[0];
+	$timedate = date("g:i a");
+	
+	$restname= mysqli_real_escape_string($connect, $_POST['name1']);
+	$items=mysqli_real_escape_string($connect, $_POST['food']);
+	$total_price=mysqli_real_escape_string($connect, $_POST['total']);
 
 echo "<script>console.log('server2')</script>";
-        $sql="INSERT INTO orders (email, time_ordered, restname, items_ordered, total)
-        VALUES ('$email', '$timedate', '$restname', '$items','$total_price')";
+	$sql="INSERT INTO orders (email, time_ordered, restname, items_ordered, total)
+	VALUES ('$email', '$timedate', '$restname', '$items','$total_price')";
 
-        if (!mysqli_query($connect,$sql)) {
-                die('Error: ' . mysqli_error($connect));
-        }
+	if (!mysqli_query($connect,$sql)) {
+		die('Error: ' . mysqli_error($connect));
+	}
 //}
 mysqli_close($connect);
 ?>

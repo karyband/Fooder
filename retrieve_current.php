@@ -22,17 +22,17 @@ if($get_rows>=1){
 
        while($row=mysqli_fetch_array($result)){
         echo "<p><span id='email' style='display:none'>".$row['email']."</span><b>Time ordered: </b>".$row['time_ordered']."<br><b>Restaurant: </b><span id='restname'>".$row['restname']."</span><br><b>Items Ordered: </b>".$row['items_ordered']."<br><b>Total price: </b>$".$row['total']."</p>";
-        if($row['time_accepted']) {
-           echo "<p><b>Status:</b> Accepted<br>At".$row['time_accepted'];
-        } else {
-           echo "<p><b>Status:</b> </p>";
-        }
+	if($row['deliverer_email']) {
+	   echo "<p><b>Status:</b> Accepted by <br>".$row['deliverer_email']." <b>At</b> ".$row['time_accepted'];	
+	} else { 
+	   echo "<p><b>Status:</b> </p>";
+	}
 }
 echo "<input type='button' value='Redo' onclick='redo()'>   <input type='button' value='Delete'  onclick='delete1()'>";
 
 
 
-
+		
 }
 
 else{

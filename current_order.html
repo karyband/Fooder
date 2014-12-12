@@ -29,31 +29,31 @@ function createCookie(name,value,days) {
 
 $(document).ready(function(){
 
-        $("#log_out").click(function(){
+	$("#log_out").click(function(){
 
-                createCookie("user" ,"",-1);
+		createCookie("user" ,"",-1);
 
-                
-                window.location.href='index.html';
-
-
-
-                });
+		
+		window.location.href='index.html';
 
 
-        $("#settings").click(function(){        
-                window.location.href='settings.html';
-        });
 
-        $("#currentorder").click(function(){    
-                window.location.href='currentorder.html';
-        });
+		});
+
+
+	$("#settings").click(function(){	
+		window.location.href='settings.html';
+	});
+
+	$("#currentorder").click(function(){	
+		window.location.href='currentorder.html';
+	});
 $("#openorders").click(function(){        
                 window.location.href='deliver.html';
         });
 
-        $("#mydeliveries").click(function(){   
-      window.location.href='mydeliver.html';
+        $("#mydeliveries").click(function(){    
+                window.location.href='mydeliver.html';
         });
 
 });
@@ -82,7 +82,7 @@ console.log("listing");
 
 function redo() {
 console.log("redo");
-        var restname=document.getElementById('restname').innerHTML;
+	var restname=document.getElementById('restname').innerHTML;
 console.log(restname);
     var r = confirm("Redo-ing your order will delete your current order, are you sure?");
     if (r == true) {
@@ -108,7 +108,8 @@ function delete1() {
 console.log("delete");
     var r = confirm("Are you sure you want to delete your current order?");
     if (r == true) {
-   $.ajax({
+    
+    $.ajax({
                 url:"../cgi-bin/delete_current.php",
                 type:"GET",
                 dataType:"text",
@@ -159,8 +160,10 @@ console.log("delete");
 
                 </div>
         </div>
-        
-        <!--content-->
+
+
+
+<!--content-->
 
 </div>
 <div id="wrapper">
@@ -172,5 +175,7 @@ console.log("delete");
 
 </div>
 
-</html> 
-        
+</html>
+
+
+

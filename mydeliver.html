@@ -29,33 +29,31 @@ function createCookie(name,value,days) {
 
 $(document).ready(function(){
 
-        $("#log_out").click(function(){
+	$("#log_out").click(function(){
 
-                createCookie("user" ,"",-1);
+		createCookie("user" ,"",-1);
 
-                B
-                window.location.href='index.html';
-
-
-
-                });
+		B
+		window.location.href='index.html';
 
 
-        $("#settings").click(function(){        
-                window.location.href='settings.html';
-        });
 
-        $("#currentorder").click(function(){    
-                window.location.href='currentorder.html';
-        });
-        
-        $("#openorders").click(function(){        
+		});
+
+
+	$("#settings").click(function(){	
+		window.location.href='settings.html';
+	});
+
+	$("#currentorder").click(function(){	
+		window.location.href='currentorder.html';
+	});
+	
+	$("#openorders").click(function(){        
                 window.location.href='deliver.html';
         });
 
-
-
-$("#mydeliveries").click(function(){    
+        $("#mydeliveries").click(function(){    
                 window.location.href='mydeliver.html';
         });
 
@@ -90,7 +88,7 @@ var x=document.getElementById('email2').innerHTML;
 console.log(x);
     var r = confirm("Are you sure you want to cancel this?");
     if (r == true) {
-        var dataString = 'email='+ x;    
+	var dataString = 'email='+ x;    
     $.ajax({
                 url:"../cgi-bin/delete_deliver.php",
                 type:"GET",
@@ -106,6 +104,9 @@ console.log(x);
         
     }
 }
+
+
+
 
 //new things end here
 
@@ -156,3 +157,5 @@ console.log(x);
 </div>
 
 </html>
+
+

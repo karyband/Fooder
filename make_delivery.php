@@ -6,6 +6,10 @@ if (mysqli_connect_errno()) {
 }
 
 $cookie_name = "user";
+$cookie_value = $_COOKIE[$cookie_name];
+$cookie_value_arr = explode(" ", $cookie_value);
+$email = $cookie_value_arr[0];
+
 
 date_default_timezone_set('America/New_York');
 
@@ -15,12 +19,17 @@ echo "<script>console.log('server')</script>";
         $email = $cookie_value_arr[0];
         $timedate = date("g:i a");
 
-echo "<script>console.log('server2')</script>";
-        $sql="INSERT INTO orders (deliverer_email, time_accepted) VALUES ('$email', '$timedate')";
+//$o='test@test.com';
+$id = mysqli_real_escape_string($connect, $_POST['order1']);
 
-        if (!mysqli_query($connect,$sql)) {
-                die('Error: ' . mysqli_error($connect));
-        }
+$sql = "UPDATE orders SET deliverer_email='$email', time_accepted='$timedate' WHERE id='$id'";
 
+if ($connect->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $connect->error;
+}
+
+		
 mysqli_close($connect);
 ?>

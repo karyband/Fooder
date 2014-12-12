@@ -20,13 +20,14 @@ $get_rows = mysqli_num_rows($result);
 if($get_rows>=1){
 echo "<form name='deliverform' method='post' onsubmit='submitdelivery()'>";
         while($row=mysqli_fetch_array($result)){
-        $email=$row['email'];
-echo "<p><input type='radio' name='deliver' value='$email'><b>User:</b> ".$row['email']." <b>Time Ordered:</b> ".$row['time_ordered']." <b>Restaurant:</b> ".$row['restname']."<br><b>Items ordered:</b> ".$row['items_ordered']."<br><b>Total price: $</b>".$row['total']."</p>";
-
-        //echo "<p style='clear:both' class='items'><br>Menu Here</p>";
+	$email=$row['email'];
+	$idcode = $row['id'];
+echo "<p><input type='radio' name='deliver' id='$idcode' value='$email'><b>User:</b> ".$row['email']." <b>Time Ordered:</b> ".$row['time_ordered']." <b>Restaurant:</b> ".$row['restname']."<br><b>Items ordered:</b> ".$row['items_ordered']."<br><b>Total price: $</b>".$row['total']."</p>";
+	
+ 	//echo "<p style='clear:both' class='items'><br>Menu Here</p>";
         //echo "<form name='menuform' method='post' onsubmit='submitorder()'><p style = 'clear:both' class = 'items'><br><b>Menu</b></p>";
 
-        }
+	}
 echo "<input type='submit' value='Submit'></form>";
 }
 

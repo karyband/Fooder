@@ -32,7 +32,7 @@ if($get_rows < 1) {
         echo "<h1>This email has already been used! Please use a different one.</h1>";
         echo "<input type=button onClick=\"parent.location='../index.html'\" value='Continue'>";
         echo "</center>";
-
+        
    mysqli_close($connect);
 }
 ?>

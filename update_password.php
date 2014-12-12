@@ -11,12 +11,19 @@ $cookie_value = $_COOKIE[$cookie_name];
 $cookie_value_arr = explode(" ", $cookie_value);
 $email = $cookie_value_arr[0];
 
-$npassword = mysqli_real_escape_string($connect, $_POST['newpassword']);
+$password1= mysqli_real_escape_string($connect, $_POST['update']);
 
-$query = mysql_query("UPDATE Users SET password=$npassword WHERE email = $email");
-        $result = mysqli_query($connect, $query);
 
-echo "success";
+$sql = "UPDATE Users SET password='$password1' WHERE email='$email'";
+
+if ($connect->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $connect->error;
+}
+
+
+echo "success"+$password1;
 
 mysqli_close($connect);
 ?>

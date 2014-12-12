@@ -29,43 +29,59 @@ function createCookie(name,value,days) {
 
 $(document).ready(function(){
 
-        $("#log_out").click(function(){
+	$("#log_out").click(function(){
 
-                createCookie("user" ,"",-1);
+		createCookie("user" ,"",-1);
 
-                B
-                window.location.href='index.html';
-
-
-
-                });
+		B
+		window.location.href='index.html';
 
 
-        $("#settings").click(function(){        
-                window.location.href='settings.html';
+
+		});
+
+
+	$("#settings").click(function(){	
+		window.location.href='settings.html';
+	});
+
+	$("#currentorder").click(function(){	
+		window.location.href='currentorder.html';
+	});
+
+ $("#openorders").click(function(){        
+                window.location.href='deliver.html';
         });
 
-        $("#currentorder").click(function(){    
-                window.location.href='currentorder.html';
-        });
 
+
+$("#mydeliveries").click(function(){    
+                window.location.href='mydeliver.html';
+        });
 });
 
+
+
+
 function password1() {
-var password = document.getElementById("newpassword").val();
-console.log(password);    
-var r = confirm("Redo-ing your order will delete your current order, are you sure?");
-    if (r == true) {
-    
-    var dataString = 'newpassword='+ password;
+console.log("hi");
+
+var r = confirm("This will change your password, are you sure?");
+//var r = true;  
+  if (r == true) {
+var password= $("#newpassword").val();
+console.log(password);
+var dataString='update='+password;    
+
      $.ajax({
                 url:"../cgi-bin/update_password.php",
-                type:"GET",
+                type:"POST",
                 data:dataString,
                 dataType:"text",
                 cache:false,
                 success: function(response){
-                   alert("Your password has been changed");    
+                  // alert("Your password has been changed");  
+			alert(response);  
                 }
         });
         
@@ -101,7 +117,8 @@ var r = confirm("Redo-ing your order will delete your current order, are you sur
                                 <li><a href="about.html" >About</a></li>
                                 <li class="sep">|</li>
                                  <li class="definition"><a>Delivery </a><span class="hidden"><div id="openorders">Open Orders</div><div id="mydeliveries" >My Deliveries</div></li>
-                                                                 <li class="sep">|</li>
+
+                                <li class="sep">|</li>
                                 <li><a href="home.html">Order</a></li>
 
                         </ul>
@@ -121,7 +138,7 @@ var r = confirm("Redo-ing your order will delete your current order, are you sur
 <div id="wrapper" style="font-size:1.3em">
 <h3>Change password</h3>
 <input type="text" id="newpassword" placeholder="New Password">
-<input type='button' value='Redo' onclick='password1()'>
+<input type='button' value='Submit' onclick="password1()">
 
 
 </div>
